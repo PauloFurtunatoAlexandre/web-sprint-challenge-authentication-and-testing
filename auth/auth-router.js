@@ -45,16 +45,14 @@ function generateToken(user) {
   const payload = {
       subject: user.id,
       username: user.username,
-      role: user.role,
+      lat: Date.now(),
   };
-
-  const secret = process.env.SECRET || "another secret here";
 
   const options = {
       expiresIn: "1d",
   };
 
-  const token = jwt.sign(payload, secret, options);
+  const token = jwt.sign(payload, jwtSecret, options);
 
   return token;
 }
